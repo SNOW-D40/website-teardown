@@ -3,6 +3,8 @@
 > Analyze publicly accessible web pages into a metadata comparison report —
 > platform, palette, fonts, price band, installed apps. **Analysis, not copying.**
 
+📖 中文使用说明书 → [`docs/使用说明书.md`](docs/使用说明书.md)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
 [![Dependencies: none](https://img.shields.io/badge/dependencies-none-brightgreen.svg)](#)
