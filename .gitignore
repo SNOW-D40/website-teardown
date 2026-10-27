@@ -1,0 +1,16 @@
+# reports and raw output
+reports/
+*.local.json
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.python-version
+
+# os / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

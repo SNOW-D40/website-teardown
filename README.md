@@ -1,0 +1,104 @@
+# website-teardown
+
+> Analyze publicly accessible web pages into a metadata comparison report —
+> platform, palette, fonts, price band, installed apps. **Analysis, not copying.**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
+[![Dependencies: none](https://img.shields.io/badge/dependencies-none-brightgreen.svg)](#)
+
+```bash
+python3 skills/website-teardown/scripts/analyze.py kettl.co ollieandjames.com
+```
+
+```
+| Site              | Platform | Colors            | Fonts             | Price band | Apps             |
+| ----------------- | -------- | ----------------- | ----------------- | ---------- | ---------------- |
+| https://kettl.co  | Shopify  | #1A1A1A #F5F1EA   | inter, playfair   | $18–$32    | Klaviyo, Yotpo   |
+| https://ollie...  | Shopify  | #F5F1EA #2C4A3B   | playfair, lato    | $28–$45    | Judge.me, Klaviyo|
+```
+
+## Why
+
+Building a storefront, writing a pitch, or benchmarking a category usually starts
+with the same manual chore: open five sites, eyeball the fonts, guess the
+platform, screenshot everything, paste it into a doc.
+
+This does that chore in one command — and stops exactly where the useful part
+ends. You get **measurable metadata**, not someone else's content.
+
+## What it extracts
+
+| Field | How |
+| --- | --- |
+| Platform | Signature detection (Shopify, WooCommerce, Magento, BigCommerce, Wix, Squarespace, Shopware) |
+| Palette | Hex frequency across inline + up to 3 linked stylesheets, neutrals filtered out |
+| Fonts | `font-family` frequency, ranked |
+| Price band | Currency-prefixed numbers in visible text → min / median / max |
+| Apps | Klaviyo, Judge.me, Yotpo, Recharge, Gorgias, Tidio, Algolia, GA, Meta Pixel, … |
+| Structure | h1/h2 counts, image count, CSS/JS file counts, Open Graph tags, JSON-LD presence |
+
+No dependencies. One file. Standard library only.
+
+## Install as an agent skill
+
+This repo ships the tool as an [Agent Skill](https://docs.claude.com/en/docs/claude-code/skills)
+as well as a plain CLI — same code, two ways to consume it.
+
+**Claude Code / compatible agents:**
+
+```bash
+git clone https://github.com/SNOW-D40/website-teardown.git
+cp -r website-teardown/skills/website-teardown ~/.claude/skills/
+```
+
+On Windows:
+
+```powershell
+git clone https://github.com/SNOW-D40/website-teardown.git
+Copy-Item -Recurse website-teardown\skills\website-teardown "$env:USERPROFILE\.claude\skills\"
+```
+
+**DeepSeek Harness / npm-based hosts:** the `skills/` folder is the contract —
+point your profile at it, or vendor the directory.
+
+**Just the CLI:** clone and run `analyze.py` directly. That's it.
+
+## Usage
+
+```bash
+python3 skills/website-teardown/scripts/analyze.py URL [URL ...] [options]
+```
+
+| Option | Default | Description |
+| --- | --- | --- |
+| `--md FILE` | — | Write the markdown report |
+| `--json FILE` | — | Write raw structured results |
+| `--max-pages N` | `20` | Hard cap on URLs per run |
+| `--delay S` | `2.0` | Base delay between requests (+0–1s jitter) |
+| `--timeout S` | `15` | Per-request timeout |
+| `--user-agent S` | `website-teardown/0.1 (+repo)` | Identifies the tool honestly |
+| `--ignore-robots` | off | **Only for sites you own.** |
+
+Exit code is `1` only when *every* URL failed; partial success returns `0`.
+
+## Compliance
+
+This tool is built to sit on the safe side of the line:
+
+- **Honest User-Agent.** No spoofed browser string. Sites can identify and block it.
+- **robots.txt respected by default.** Disallowed paths are skipped and reported, not retried.
+- **Rate limited.** Randomized 2–3s between requests; `--max-pages` caps the blast radius.
+- **Metadata only.** No image downloads, no page copy storage, no screenshots
+  redistributed. Visible text is used in memory to mine price ranges and then dropped.
+- **No access-control circumvention.** Login walls, paywalls, captchas, and bot
+  protection are out of scope — a blocked request is reported, never retried with
+  a disguise.
+
+You are responsible for complying with the target sites' terms of service and
+applicable law in your jurisdiction. Analyze public pages, keep volumes small,
+and keep source links in every report you share.
+
+## License
+
+MIT — see [LICENSE](LICENSE). Provided "as is", without warranty of any kind.
