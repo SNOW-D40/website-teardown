@@ -36,6 +36,7 @@ PLATFORM_SIGNATURES = {
     "WooCommerce": ["woocommerce", "wp-content/plugins/woocommerce"],
     "WordPress": ["wp-content", "wp-includes"],
     "Magento": ["magento", "static/version", "mage/cookies"],
+    "PrestaShop": ["prestashop", "/modules/ps_", "var prestashop"],
     "BigCommerce": ["bigcommerce.com", "cdn11.bigcommerce.com"],
     "Squarespace": ["squarespace.com", "static1.squarespace.com"],
     "Wix": ["wix.com", "wixstatic.com"],

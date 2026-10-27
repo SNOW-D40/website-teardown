@@ -14,16 +14,16 @@ python3 skills/website-teardown/scripts/analyze.py kettl.co ollieandjames.com
 ```
 
 ```
-| Site              | Platform | Colors            | Fonts             | Price band | Apps             |
-| ----------------- | -------- | ----------------- | ----------------- | ---------- | ---------------- |
-| https://kettl.co  | Shopify  | #1A1A1A #F5F1EA   | inter, playfair   | $18–$32    | Klaviyo, Yotpo   |
-| https://ollie...  | Shopify  | #F5F1EA #2C4A3B   | playfair, lato    | $28–$45    | Judge.me, Klaviyo|
+| Site                  | Platform | Colors                   | Fonts                    | Price band  | Apps                      |
+| --------------------- | -------- | ------------------------ | ------------------------ | ----------- | ------------------------- |
+| https://kettl.co      | Shopify  | #dd6444 #467c99 #38637a  | otto                     | $26–$150    | Klaviyo, Recharge         |
+| https://www.allbirds… | Shopify  | #e0dacf #03143b #9c0f0f  | geograph, akkurat mono   | $5–$105     | Yotpo, Swiper, GA         |
 ```
 
-Real run against three live storefronts: [`examples/sample-report.md`](examples/sample-report.md) ·
-raw output: [`examples/sample-raw.json`](examples/sample-raw.json). Gymshark appears
-with its refusal reason rather than being silently dropped — that's the tool
-respecting `robots.txt`.
+Real run against six live storefronts: [`examples/sample-report.md`](examples/sample-report.md) ·
+raw output: [`examples/sample-raw.json`](examples/sample-raw.json). Gymshark and Blue
+Bottle appear with their refusal reason rather than being silently dropped — that's
+the tool respecting `robots.txt`.
 
 ## Why
 
@@ -38,7 +38,7 @@ ends. You get **measurable metadata**, not someone else's content.
 
 | Field | How |
 | --- | --- |
-| Platform | Signature detection (Shopify, WooCommerce, Magento, BigCommerce, Wix, Squarespace, Shopware) |
+| Platform | Signature detection from asset URLs + `generator` meta — 15 platforms: Shopify, WooCommerce, WordPress, PrestaShop, Magento, BigCommerce, Wix, Squarespace, Shopware, Shoplazza, Shopline, Ueeshop, XShoppy, SHOPPY, Youzan |
 | Palette | Hex frequency across inline + up to 3 linked stylesheets, neutrals filtered out |
 | Fonts | `font-family` frequency, ranked |
 | Price band | Currency-prefixed numbers in visible text → min / median / max |
@@ -76,6 +76,10 @@ point your profile at it, or vendor the directory.
 ```bash
 python3 skills/website-teardown/scripts/analyze.py URL [URL ...] [options]
 ```
+
+Requires **Python 3.8+** and nothing else — no `pip install`. On Windows use
+`python` (or `py -3`) in place of `python3`; the [Chinese manual](docs/使用说明书.md)
+walks through the PowerShell paths.
 
 | Option | Default | Description |
 | --- | --- | --- |
