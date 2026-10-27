@@ -18,6 +18,11 @@ python3 skills/website-teardown/scripts/analyze.py kettl.co ollieandjames.com
 | https://ollie...  | Shopify  | #F5F1EA #2C4A3B   | playfair, lato    | $28–$45    | Judge.me, Klaviyo|
 ```
 
+Real run against three live storefronts: [`examples/sample-report.md`](examples/sample-report.md) ·
+raw output: [`examples/sample-raw.json`](examples/sample-raw.json). Gymshark appears
+with its refusal reason rather than being silently dropped — that's the tool
+respecting `robots.txt`.
+
 ## Why
 
 Building a storefront, writing a pitch, or benchmarking a category usually starts

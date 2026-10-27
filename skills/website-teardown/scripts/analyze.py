@@ -35,7 +35,7 @@ PLATFORM_SIGNATURES = {
     "Shopify": ["cdn.shopify.com", "shopify.theme", "window.shopify", "/cdn/shop/"],
     "WooCommerce": ["woocommerce", "wp-content/plugins/woocommerce"],
     "WordPress": ["wp-content", "wp-includes"],
-    "Magento": ["magento", "static/version", "mage/"],
+    "Magento": ["magento", "static/version", "mage/cookies"],
     "BigCommerce": ["bigcommerce.com", "cdn11.bigcommerce.com"],
     "Squarespace": ["squarespace.com", "static1.squarespace.com"],
     "Wix": ["wix.com", "wixstatic.com"],
@@ -192,11 +192,20 @@ def top_colors(css_text, limit=5):
     return [c for c, _ in sorted(counts.items(), key=lambda kv: -kv[1])[:limit]]
 
 
+CSS_WIDE_KEYWORDS = {
+    "inherit", "initial", "unset", "revert", "revert-layer", "none", "auto",
+    "serif", "sans-serif", "monospace", "cursive", "fantasy", "system-ui",
+    "ui-sans-serif", "ui-serif", "ui-monospace", "emoji", "math", "fangsong",
+}
+
+
 def top_fonts(css_text, limit=3):
     counts = {}
     for m in FONT_RE.finditer(css_text):
         family = m.group(1).split(",")[0].strip().strip("\"'").strip()
         if not family or family.startswith("var(") or len(family) > 40:
+            continue
+        if family.lower().strip() in CSS_WIDE_KEYWORDS:
             continue
         key = family.lower()
         counts[key] = counts.get(key, 0) + 1
@@ -309,6 +318,9 @@ def to_markdown(results):
         lines.append(f"| {r['url']} | {platform} | {colors} | {fonts} | {band} | {apps} |")
     lines.append("")
     lines.append("> Metadata only. No page copy, images, or screenshots are collected or redistributed.")
+    stamps = sorted({r.get("analyzed_at", "") for r in results if r.get("analyzed_at")})
+    if stamps:
+        lines.append(f"> Analyzed {stamps[0]}.")
     return "\n".join(lines)
 
 

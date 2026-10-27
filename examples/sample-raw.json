@@ -1,0 +1,94 @@
+[
+  {
+    "url": "https://kettl.co",
+    "ok": true,
+    "analyzed_at": "2026-10-28T03:04:08+0800",
+    "robots": "robots.txt allows",
+    "title": "Fine Japanese Tea by Kettl\n – Kettl",
+    "description": "At Kettl we are proud to offer the finest Japanese green teas, many of them rarely found outside of Japan. Additionally, our offerings also include emerging Japanese teas such as black and oolong and also caffeine free teas.",
+    "h1_count": 1,
+    "h1": [
+      "I'm looking for tea that's:"
+    ],
+    "h2_count": 49,
+    "img_count": 103,
+    "css_files": 6,
+    "js_files": 64,
+    "platform": [
+      "Shopify"
+    ],
+    "apps": [
+      "Klaviyo",
+      "Recharge"
+    ],
+    "colors": [
+      "#467c99",
+      "#38637a",
+      "#90b0c2",
+      "#dd6444",
+      "#8b0000"
+    ],
+    "fonts": [
+      "otto"
+    ],
+    "price_range": {
+      "min": 26.0,
+      "median": 45.0,
+      "max": 150.0,
+      "samples": 17
+    },
+    "has_og_tags": true,
+    "has_structured_data": true
+  },
+  {
+    "url": "https://www.allbirds.com",
+    "ok": true,
+    "analyzed_at": "2026-10-28T03:04:18+0800",
+    "robots": "robots.txt allows",
+    "title": "Allbirds: Comfortable, Sustainable Shoes & Apparel",
+    "description": "Allbirds: The world’s most comfortable shoes, flats, and clothing made with natural materials like merino wool and eucalyptus. FREE shipping & returns.",
+    "h1_count": 1,
+    "h1": [
+      "Wildly Comfortable. Super Natural."
+    ],
+    "h2_count": 41,
+    "img_count": 42,
+    "css_files": 4,
+    "js_files": 25,
+    "platform": [
+      "Shopify"
+    ],
+    "apps": [
+      "Yotpo",
+      "Swiper",
+      "Google Analytics"
+    ],
+    "colors": [
+      "#e0dacf",
+      "#03143b",
+      "#9c0f0f",
+      "#443828",
+      "#10714e"
+    ],
+    "fonts": [
+      "geograph",
+      "akkurat mono",
+      "self modern"
+    ],
+    "price_range": {
+      "min": 5.0,
+      "median": 100.0,
+      "max": 105.0,
+      "samples": 17
+    },
+    "has_og_tags": true,
+    "has_structured_data": false
+  },
+  {
+    "url": "https://www.gymshark.com",
+    "ok": false,
+    "analyzed_at": "2026-10-28T03:04:28+0800",
+    "robots": "robots.txt disallows",
+    "error": "skipped: robots.txt disallows automated access"
+  }
+]
