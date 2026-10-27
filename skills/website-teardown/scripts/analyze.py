@@ -40,6 +40,13 @@ PLATFORM_SIGNATURES = {
     "Squarespace": ["squarespace.com", "static1.squarespace.com"],
     "Wix": ["wix.com", "wixstatic.com"],
     "Shopware": ["shopware"],
+    # platforms common among cross-border DTC stores
+    "Shoplazza/店匠": ["shoplazza"],
+    "Shopline": ["shopline"],
+    "Ueeshop": ["ueeshop"],
+    "XShoppy": ["xshoppy"],
+    "SHOPYY": ["shopyy"],
+    "Youzan/有赞": ["youzan"],
 }
 
 APP_SIGNATURES = {
@@ -80,6 +87,7 @@ class PageParser(HTMLParser):
         self.script_srcs = []
         self.meta = {}
         self.img_count = 0
+        self.img_srcs = []
         self.text_chunks = []
         self._in_title = False
         self._in_style = False
@@ -95,6 +103,8 @@ class PageParser(HTMLParser):
             self._heading = tag
         elif tag == "img":
             self.img_count += 1
+            if len(self.img_srcs) < 200 and a.get("src"):
+                self.img_srcs.append(a["src"])
         elif tag == "link":
             rel = a.get("rel", "").lower()
             href = a.get("href", "")
@@ -212,12 +222,36 @@ def top_fonts(css_text, limit=3):
     return [f for f, _ in sorted(counts.items(), key=lambda kv: -kv[1])[:limit]]
 
 
-def detect(signatures, haystack):
+def detect(signatures, haystack, require_all=False):
     hits = []
     for name, needles in signatures.items():
         if any(n.lower() in haystack for n in needles):
             hits.append(name)
     return hits
+
+
+def detect_platform(parser, full_html_lower):
+    """Prefer evidence from real asset URLs and the generator meta tag.
+
+    A marketing page that merely *mentions* competitors ("faster than
+    WooCommerce") must not be classified as running them, so the full text is
+    only consulted when no URL evidence exists at all.
+    """
+    asset_urls = " ".join(parser.script_srcs + parser.stylesheets + parser.img_srcs).lower()
+    generator = (parser.meta.get("generator") or "").lower()
+    by_assets = detect(PLATFORM_SIGNATURES, asset_urls + " " + generator)
+    if by_assets:
+        return by_assets
+    return detect(PLATFORM_SIGNATURES, full_html_lower)
+
+
+def detect_apps(parser, full_html_lower):
+    """Same logic: a real load shows up in a script/asset URL."""
+    asset_urls = " ".join(parser.script_srcs + parser.stylesheets).lower()
+    by_assets = detect(APP_SIGNATURES, asset_urls)
+    if by_assets:
+        return by_assets
+    return detect(APP_SIGNATURES, full_html_lower)
 
 
 def price_range(text):
@@ -288,8 +322,8 @@ def analyze(url, ua, timeout, respect_robots):
             "img_count": parser.img_count,
             "css_files": len(parser.stylesheets),
             "js_files": len(parser.script_srcs),
-            "platform": detect(PLATFORM_SIGNATURES, haystack),
-            "apps": detect(APP_SIGNATURES, haystack),
+            "platform": detect_platform(parser, haystack),
+            "apps": detect_apps(parser, haystack),
             "colors": top_colors(css_text),
             "fonts": top_fonts(css_text),
             "price_range": price_range(page_text),
@@ -330,7 +364,9 @@ def main(argv=None):
         prog="website-teardown",
         description="Analyze publicly accessible pages and emit a comparison report.",
     )
-    ap.add_argument("urls", nargs="+", help="page URLs to analyze (public pages only)")
+    ap.add_argument("urls", nargs="*", help="page URLs to analyze (public pages only)")
+    ap.add_argument("--input", metavar="FILE",
+                    help="read extra URLs from a file, one per line (# comments ignored)")
     ap.add_argument("--json", metavar="FILE", help="write raw results as JSON")
     ap.add_argument("--md", metavar="FILE", help="write the markdown report to FILE")
     ap.add_argument("--max-pages", type=int, default=MAX_PAGES_DEFAULT,
@@ -341,6 +377,24 @@ def main(argv=None):
     ap.add_argument("--ignore-robots", action="store_true",
                     help="DANGEROUS: ignore robots.txt. Do not use on third-party sites.")
     args = ap.parse_args(argv)
+
+    if args.input:
+        try:
+            # utf-8-sig: Windows editors love to prepend a BOM, which would
+            # otherwise end up inside the URL and break the request.
+            with open(args.input, "r", encoding="utf-8-sig") as fh:
+                extra = [
+                    line.strip().lstrip("\ufeff")
+                    for line in fh
+                    if line.strip() and not line.strip().startswith("#")
+                ]
+        except OSError as exc:
+            print(f"[error] cannot read --input file: {exc}", file=sys.stderr)
+            return 2
+        args.urls = list(args.urls) + extra
+
+    if not args.urls:
+        ap.error("no URLs given (pass them as arguments or with --input FILE)")
 
     urls = args.urls[: args.max_pages]
     if len(args.urls) > args.max_pages:

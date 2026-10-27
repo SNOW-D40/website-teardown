@@ -79,6 +79,7 @@ python3 skills/website-teardown/scripts/analyze.py URL [URL ...] [options]
 
 | Option | Default | Description |
 | --- | --- | --- |
+| `--input FILE` | — | Read extra URLs from a file (one per line, `#` comments, BOM-safe) |
 | `--md FILE` | — | Write the markdown report |
 | `--json FILE` | — | Write raw structured results |
 | `--max-pages N` | `20` | Hard cap on URLs per run |
