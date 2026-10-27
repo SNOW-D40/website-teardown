@@ -2,7 +2,7 @@
   {
     "url": "https://kettl.co",
     "ok": true,
-    "analyzed_at": "2026-10-28T03:04:08+0800",
+    "analyzed_at": "2026-10-28T03:08:00+0800",
     "robots": "robots.txt allows",
     "title": "Fine Japanese Tea by Kettl\n – Kettl",
     "description": "At Kettl we are proud to offer the finest Japanese green teas, many of them rarely found outside of Japan. Additionally, our offerings also include emerging Japanese teas such as black and oolong and also caffeine free teas.",
@@ -22,10 +22,10 @@
       "Recharge"
     ],
     "colors": [
+      "#dd6444",
       "#467c99",
       "#38637a",
       "#90b0c2",
-      "#dd6444",
       "#8b0000"
     ],
     "fonts": [
@@ -43,7 +43,7 @@
   {
     "url": "https://www.allbirds.com",
     "ok": true,
-    "analyzed_at": "2026-10-28T03:04:18+0800",
+    "analyzed_at": "2026-10-28T03:08:11+0800",
     "robots": "robots.txt allows",
     "title": "Allbirds: Comfortable, Sustainable Shoes & Apparel",
     "description": "Allbirds: The world’s most comfortable shoes, flats, and clothing made with natural materials like merino wool and eucalyptus. FREE shipping & returns.",
@@ -85,10 +85,180 @@
     "has_structured_data": false
   },
   {
-    "url": "https://www.gymshark.com",
-    "ok": false,
-    "analyzed_at": "2026-10-28T03:04:28+0800",
-    "robots": "robots.txt disallows",
-    "error": "skipped: robots.txt disallows automated access"
+    "url": "https://ollieandjames.com",
+    "ok": true,
+    "analyzed_at": "2026-10-28T03:08:21+0800",
+    "robots": "robots.txt allows",
+    "title": "Designer Dog Collars, Dog Leads & Accessories\n    \n    \n    \n      – OLLIE & JAMES",
+    "description": "Luxury dog accessories by OLLIE & JAMES. Shop designer dog collars, dog leads, ID tags, compostable poo bags and everyday necessities for stylish pups.",
+    "h1_count": 0,
+    "h1": [],
+    "h2_count": 38,
+    "img_count": 90,
+    "css_files": 7,
+    "js_files": 17,
+    "platform": [
+      "Shopify"
+    ],
+    "apps": [
+      "Klaviyo",
+      "Judge.me"
+    ],
+    "colors": [
+      "#d7a776",
+      "#f6e5dc",
+      "#b0512c",
+      "#00ffff",
+      "#ff00ff"
+    ],
+    "fonts": [
+      "gtzirkon-book",
+      "instrument sans",
+      "judgemestar"
+    ],
+    "price_range": {
+      "min": 8.99,
+      "median": 89.0,
+      "max": 195.0,
+      "samples": 35
+    },
+    "has_og_tags": true,
+    "has_structured_data": true
+  },
+  {
+    "url": "https://fellowproducts.com",
+    "ok": true,
+    "analyzed_at": "2026-10-28T03:08:33+0800",
+    "robots": "robots.txt allows",
+    "title": "Fellow - Everyday Magic.™",
+    "description": "Greetings fellow coffee lovers. What happens when a love for coffee and a passion for product design meet up for a romantic candlelit dinner? Fellow happens. Makers of the award winning Stagg EKG Electric Pour-Over Kettle.",
+    "h1_count": 1,
+    "h1": [
+      "Espresso, evolved."
+    ],
+    "h2_count": 4,
+    "img_count": 124,
+    "css_files": 9,
+    "js_files": 54,
+    "platform": [
+      "Shopify"
+    ],
+    "apps": [
+      "Klaviyo",
+      "Yotpo",
+      "Swiper",
+      "Google Analytics"
+    ],
+    "colors": [
+      "#9d523a",
+      "#88acc3",
+      "#ab4824",
+      "#f6ede0",
+      "#fef6eb"
+    ],
+    "fonts": [
+      "fellow solar",
+      "sohne"
+    ],
+    "price_range": {
+      "min": 1.0,
+      "median": 66.0,
+      "max": 399.95,
+      "samples": 24
+    },
+    "has_og_tags": true,
+    "has_structured_data": true
+  },
+  {
+    "url": "https://www.onyxcoffeelab.com",
+    "ok": true,
+    "analyzed_at": "2026-10-28T03:08:43+0800",
+    "robots": "robots.txt allows",
+    "title": "Onyx Coffee Lab - Coffee Roasters • Café • Barista Training",
+    "description": "Join our pilgrimage— seeking quality, truth and accountability in coffee. We journey to find the finest and most unique coffees in the world.",
+    "h1_count": 0,
+    "h1": [],
+    "h2_count": 153,
+    "img_count": 39,
+    "css_files": 7,
+    "js_files": 20,
+    "platform": [
+      "Shopify"
+    ],
+    "apps": [
+      "Klaviyo",
+      "Recharge",
+      "Gorgias",
+      "Swiper"
+    ],
+    "colors": [
+      "#007aff",
+      "#b00923",
+      "#d28467",
+      "#ae841f",
+      "#f4d8c1"
+    ],
+    "fonts": [
+      "montserrat",
+      "bajern",
+      "swiper-icons"
+    ],
+    "price_range": {
+      "min": 40.0,
+      "median": 40.0,
+      "max": 40.0,
+      "samples": 4
+    },
+    "has_og_tags": false,
+    "has_structured_data": false
+  },
+  {
+    "url": "https://counterculturecoffee.com",
+    "ok": true,
+    "analyzed_at": "2026-10-28T03:08:56+0800",
+    "robots": "robots.txt allows",
+    "title": "Counter Culture Coffee",
+    "description": "Counter Culture Coffee is a specialty coffee roaster sourcing exceptional single-origin and specialty coffee. Fresh-roasted coffee to your doorstep.",
+    "h1_count": 7,
+    "h1": [
+      "Mystery Bundle Returns",
+      "Our Coffees",
+      "What our customers are saying"
+    ],
+    "h2_count": 5,
+    "img_count": 168,
+    "css_files": 11,
+    "js_files": 14,
+    "platform": [
+      "Shopify"
+    ],
+    "apps": [
+      "Klaviyo",
+      "Recharge",
+      "Gorgias",
+      "Swiper",
+      "Hotjar",
+      "Google Analytics"
+    ],
+    "colors": [
+      "#ff4e00",
+      "#fb90c5",
+      "#5f9fff",
+      "#008f5e",
+      "#e7e880"
+    ],
+    "fonts": [
+      "founders grotesk",
+      "acorn-semibold",
+      "caveat"
+    ],
+    "price_range": {
+      "min": 16.0,
+      "median": 28.0,
+      "max": 130.0,
+      "samples": 122
+    },
+    "has_og_tags": true,
+    "has_structured_data": true
   }
 ]
