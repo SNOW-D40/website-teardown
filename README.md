@@ -111,6 +111,15 @@ You are responsible for complying with the target sites' terms of service and
 applicable law in your jurisdiction. Analyze public pages, keep volumes small,
 and keep source links in every report you share.
 
+## Related
+
+If you build Shopify stores for clients, the process around the build — intake
+forms, the 40+ pre-launch checklist, handover documents — is packaged separately
+as **[Shopify Agency Kit](https://gumroad.com/l/shopify-agency-kit)**.
+
+This tool tells you what a competitor's site is made of. That kit is what you do
+before and after.
+
 ## License
 
 MIT — see [LICENSE](LICENSE). Provided "as is", without warranty of any kind.
